@@ -11,16 +11,18 @@ class HomeWidget extends StatefulWidget {
 class _HomeWidgetState extends State<HomeWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
+    double _heigth = MediaQuery.of(context).size.height;
+    print("Altura: $_heigth");
+
+    return SingleChildScrollView(
         child: Column(
-          children: [
-            BooksCard(),
-            BooksCard(),
-            BooksCard(),
-          ],
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          height: 20.0,
         ),
-      ),
-    );
+        Text("")
+      ],
+    ));
   }
 }

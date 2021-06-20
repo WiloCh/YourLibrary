@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yourlibrary/src/pages/book_page.dart';
 import 'package:yourlibrary/src/widgets/content/addbook_widget.dart';
 import 'package:yourlibrary/src/widgets/content/home_widget.dart';
 import 'package:yourlibrary/src/widgets/content/libraries_widget.dart';
@@ -16,4 +17,9 @@ List<ItemMenu> menuOptions = [
   ItemMenu.create(Icons.location_on, "Librerias"),
 ];
 
-List<Widget> contentWidget = [HomeWidget(), AddbookWidget(), LibrariesWidget()];
+List<Widget> contentWidget = [
+  HomeWidget(),
+  AddbookWidget(),
+  LibrariesWidget(),
+  BookPage()
+];

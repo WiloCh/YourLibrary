@@ -22,7 +22,10 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text(widget.titulo)),
+        centerTitle: true,
+        title: Text(_selectedIndex == 0
+            ? widget.titulo
+            : menuOptions[_selectedIndex].label),
       ),
       body: Container(
         child: contentWidget[_selectedIndex],
