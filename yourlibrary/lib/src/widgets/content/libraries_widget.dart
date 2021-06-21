@@ -10,9 +10,22 @@ class LibrariesWidget extends StatefulWidget {
 class _LibrariesWidgetState extends State<LibrariesWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Librerias'),
+    double _heigth = MediaQuery.of(context).size.height;
+    print("Altura: $_heigth");
+
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(" "),
+          Text("Mapa de Librerías y Bibliotecas",
+              style: Theme.of(context).textTheme.headline5),
+          Text(" "),
+          SizedBox(
+            height: _heigth * 0.6,
+            child: Container(color: Colors.blueAccent),
+          ),
+        ],
       ),
     );
   }

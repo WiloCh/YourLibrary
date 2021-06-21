@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddbookWidget extends StatefulWidget {
-  AddbookWidget({Key? key}) : super(key: key);
+  const AddbookWidget({Key? key}) : super(key: key);
 
   @override
   _AddbookWidgetState createState() => _AddbookWidgetState();
@@ -10,8 +10,45 @@ class AddbookWidget extends StatefulWidget {
 class _AddbookWidgetState extends State<AddbookWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('Agregar Libro')),
+    return Scaffold(
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(" "),
+            Text(" "),
+            Text(
+              "Título: ",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Text(
+              "Autor: ",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Text(
+              "Editorial: ",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Text(
+              "Número de Páginas: ",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Text(
+              "Número de Páginas Leidas: ",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Text(
+              "Descripción: ",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Text(
+              "Foto:",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

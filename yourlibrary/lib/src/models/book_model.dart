@@ -10,28 +10,40 @@ String bookToJson(Book data) => json.encode(data.toJson());
 
 class Book {
   Book({
-    this.name,
-    this.autor,
-    this.generos,
-    this.numeroPaginas,
+    this.title,
+    this.author,
+    this.editorial,
+    this.pagNum,
+    this.pagRead,
+    this.description,
+    this.photo,
   });
 
-  String? name;
-  String? autor;
-  String? generos;
-  String? numeroPaginas;
+  String? title;
+  String? author;
+  String? editorial;
+  String? pagNum;
+  String? pagRead;
+  String? description;
+  String? photo;
 
   factory Book.fromJson(Map<String, dynamic> json) => Book(
-        name: json["name"],
-        autor: json["autor"],
-        generos: json["Generos"],
-        numeroPaginas: json["NumeroPaginas"],
+        title: json["title"],
+        author: json["author"],
+        editorial: json["editorial"],
+        pagNum: json["pagNum"],
+        pagRead: json["pagRead"],
+        description: json["description"],
+        photo: json["photo"],
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name,
-        "autor": autor,
-        "Generos": generos,
-        "NumeroPaginas": numeroPaginas,
+        "title": title,
+        "author": author,
+        "editorial": editorial,
+        "pagNum": pagNum,
+        "pagRead": pagRead,
+        "description": description,
+        "photo": photo,
       };
 }

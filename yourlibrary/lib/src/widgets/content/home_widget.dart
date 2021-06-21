@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yourlibrary/src/widgets/cards/books_card.dart';
+import 'package:yourlibrary/src/widgets/lists/books_list.dart';
 
 class HomeWidget extends StatefulWidget {
   HomeWidget({Key? key}) : super(key: key);
@@ -21,7 +21,8 @@ class _HomeWidgetState extends State<HomeWidget> {
         SizedBox(
           height: 20.0,
         ),
-        Text("")
+        Text("Tus Libros", style: Theme.of(context).textTheme.headline5),
+        BooksList()
       ],
     ));
   }

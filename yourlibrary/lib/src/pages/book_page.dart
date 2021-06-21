@@ -1,33 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:yourlibrary/src/models/book_model.dart';
 
-class BookPage extends StatelessWidget {
-  const BookPage({Key? key}) : super(key: key);
+class BookPage extends StatefulWidget {
+  const BookPage({Key? key, required this.book}) : super(key: key);
+  final Book book;
 
+  @override
+  _BookPageState createState() => _BookPageState();
+}
+
+class _BookPageState extends State<BookPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 50),
+      appBar: AppBar(),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset("images/b1.png", width: 250, height: 250),
+            Text(" "),
+            Text(" "),
             Text(
-              "Call of Cthulhu",
+              widget.book.title.toString(),
               style: Theme.of(context).textTheme.headline3,
             ),
+            Container(
+                child: widget.book.photo == null
+                    ? Image.asset("assets/images/bu.png")
+                    : Image.network(widget.book.photo.toString(), width: 200)),
+            Text(" "),
+            Text(" "),
             Text(
-              "H.P. Lovecraft",
-              style: Theme.of(context).textTheme.headline3,
+              "Autor: " + widget.book.author.toString(),
+              style: Theme.of(context).textTheme.headline5,
             ),
             Text(
-              "SCI",
-              style: Theme.of(context).textTheme.headline3,
+              "Editorial: " + widget.book.editorial.toString(),
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Text(
+              "Descripción: " + widget.book.description.toString(),
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            Text(
+              "Páginas Leidas: " +
+                  widget.book.pagRead.toString() +
+                  "/" +
+                  widget.book.pagNum.toString(),
+              style: Theme.of(context).textTheme.headline5,
             ),
           ],
         ),
-      )),
+      ),
     );
   }
 }

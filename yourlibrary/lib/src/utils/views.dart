@@ -21,5 +21,4 @@ List<Widget> contentWidget = [
   HomeWidget(),
   AddbookWidget(),
   LibrariesWidget(),
-  BookPage()
 ];

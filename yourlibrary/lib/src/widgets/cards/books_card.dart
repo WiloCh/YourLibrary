@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:yourlibrary/src/models/book_model.dart';
+import 'package:yourlibrary/src/pages/book_page.dart';
 
 class BooksCard extends StatelessWidget {
-  const BooksCard({Key? key, required this.img}) : super(key: key);
-  final String img;
+  const BooksCard({Key? key, required this.currentBook}) : super(key: key);
+  final Book currentBook;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-          title: Text("Call of Cthulhu"),
-          subtitle: Text("H.P. Lovecraft"),
-          leading: Image.asset("/images/" + img + ".png")),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BookPage(book: currentBook),
+            ));
+      },
+      child: Card(
+          child: ListTile(
+        title: Text((currentBook.title).toString()),
+        subtitle: Text((currentBook.author).toString()),
+        leading: currentBook.photo == null
+            ? Image.asset("assets/images/bu.png")
+            : Image.network(currentBook.photo.toString()),
+      )),
     );
   }
 }
