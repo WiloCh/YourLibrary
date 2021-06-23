@@ -29,7 +29,7 @@ class _BooksListState extends State<BooksList> {
   Widget build(BuildContext context) {
     return _books.length == 0
         ? Container(
-            child: Center(child: Text('Descargando Libros')),
+            child: Center(child: CircularProgressIndicator()),
           )
         : Column(
             mainAxisSize: MainAxisSize.min,
