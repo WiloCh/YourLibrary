@@ -10,7 +10,7 @@ class BookService {
     List<Book> items = [];
     try {
       var uri = Uri.https(
-          "us-central1-fir-typesript.cloudfunctions.net", "/app/books");
+          "us-central1-backend-yourlibrary.cloudfunctions.net", "/app/books");
       final resp = await http.get(uri);
       if (resp.body.isEmpty) return items;
       List<dynamic> jsonList = json.decode(resp.body);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yourlibrary/src/utils/views.dart';
+import 'package:yourlibrary/src/widgets/content/addbook_widget.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key, required this.titulo}) : super(key: key);
@@ -28,8 +29,20 @@ class _MainPageState extends State<MainPage> {
             : menuOptions[_selectedIndex].label),
       ),
       body: Container(
-        child: contentWidget[_selectedIndex],
-      ),
+          margin: EdgeInsets.symmetric(horizontal: 10.0),
+          child: contentWidget[_selectedIndex]),
+      floatingActionButton: _selectedIndex == 0
+          ? FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddbookWidget(),
+                    ));
+              },
+              child: const Icon(Icons.add),
+            )
+          : null,
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: (value) {
