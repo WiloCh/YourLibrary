@@ -11,6 +11,7 @@ class _AddbookWidgetState extends State<AddbookWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

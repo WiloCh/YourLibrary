@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yourlibrary/src/pages/book_page.dart';
-import 'package:yourlibrary/src/widgets/content/addbook_widget.dart';
 import 'package:yourlibrary/src/widgets/content/home_widget.dart';
 import 'package:yourlibrary/src/widgets/content/libraries_widget.dart';
+import 'package:yourlibrary/src/widgets/content/readbook_widget.dart';
 
 class ItemMenu {
   String label;
@@ -13,12 +12,12 @@ class ItemMenu {
 
 List<ItemMenu> menuOptions = [
   ItemMenu(Icons.home, "Inicio"),
-  ItemMenu.create(Icons.add, "Agregar"),
+  ItemMenu.create(Icons.library_books, "Leidos"),
   ItemMenu.create(Icons.location_on, "Librerias"),
 ];
 
 List<Widget> contentWidget = [
   HomeWidget(),
-  AddbookWidget(),
+  ReadbookWidget(),
   LibrariesWidget(),
 ];
