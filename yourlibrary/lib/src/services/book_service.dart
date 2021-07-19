@@ -9,8 +9,8 @@ class BookService {
   Future<List<Book>?> getBooks() async {
     List<Book> items = [];
     try {
-      var uri = Uri.https(
-          "us-central1-backend-yourlibrary.cloudfunctions.net", "/app/books");
+      var uri = Uri.https("us-central1-backend-yourlibrary.cloudfunctions.net",
+          "/app/books/1/10");
       final resp = await http.get(uri);
       if (resp.body.isEmpty) return items;
       List<dynamic> jsonList = json.decode(resp.body);

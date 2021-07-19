@@ -1,0 +1,58 @@
+[
+    {
+        "name" : "Romantica",
+        "descripcion" : "Subgéneros literarios de novelas"
+    },
+    {
+        "name" : "Historico",
+        "descripcion" : "Subgéneros literarios de novelas"
+    },
+    {
+        "name" : "Ciencia Ficcion",
+        "descripcion" : "Subgéneros literarios de novelas"
+    },
+    {
+        "name" : "Drama",
+        "descripcion" : "Subgéneros literarios de novelas"
+    },
+    {
+        "name" : "Fantasia",
+        "descripcion" : "Subgéneros literarios de novelas"
+    },
+    {
+        "name" : "Aventuras",
+        "descripcion" : "Subgéneros literarios de novelas"
+    },
+    {
+        "name" : "Humor",
+        "descripcion" : "Subgéneros literarios de novelas"
+    },
+    {
+        "name" : "Terror",
+        "descripcion" : "Subgéneros literarios de novelas"
+    },
+    {
+        "name" : "Novela gráfica (Ejemplo: Comic)",
+        "descripcion" : "géneros literarios de novelas"
+    },
+    {
+        "name" : "Relato",
+        "descripcion" : "Tipos de géneros literarios"
+    },
+    {
+        "name" : "Cuento",
+        "descripcion" : "Tipos de géneros literarios"
+    },
+    {
+        "name" : "Ensayo",
+        "descripcion" : "Tipos de géneros literarios"
+    },
+    {
+        "name" : "Poesía",
+        "descripcion" : "Tipos de géneros literarios"
+    },
+    {
+        "name" : "Microrrelato",
+        "descripcion" : "Tipos de géneros literarios"
+    }
+]
