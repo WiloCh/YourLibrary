@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:yourlibrary/src/models/book_model.dart';
 import 'package:yourlibrary/src/services/Genres_service.dart';
 import 'package:yourlibrary/src/models/genre_model.dart';
 import 'package:yourlibrary/src/utils/standard_widgets.dart';
@@ -18,14 +19,16 @@ class _AddbookWidgetState extends State<AddbookWidget> {
 
   List<Genre> _genres = [];
 
+  late Book _book;
   late File _image;
   bool _imageSelected = false;
   final _picker = ImagePicker();
 
   @override
-  void initSate() {
+  void initState() {
     super.initState();
     _loadGenres();
+    _book = new Book();
   }
 
   @override
@@ -66,7 +69,7 @@ class _AddbookWidgetState extends State<AddbookWidget> {
                         ],
                       ))
                 ]),
-                Standard.tittleToForm(context, "Registro de Paciente"),
+                Standard.tittleToForm(context, "Registro de Libro"),
                 _form()
               ]),
             )
@@ -127,6 +130,7 @@ class _AddbookWidgetState extends State<AddbookWidget> {
             children: [
               _inputTitle(),
               _inputAuthor(),
+              _inputGenre(),
               _inputEditorial(),
               _inputDescription()
             ],
@@ -173,6 +177,31 @@ class _AddbookWidgetState extends State<AddbookWidget> {
         },
         decoration: InputDecoration(labelText: "Editorial"),
         maxLength: 35);
+  }
+
+  _inputGenre() {
+    return DropdownButton<String>(
+      value: _book.description,
+      icon: const Icon(Icons.expand_more),
+      iconSize: 24,
+      elevation: 16,
+      isExpanded: true,
+      underline: Container(
+        height: 2,
+        color: Theme.of(context).dividerColor,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          _book.description = newValue!;
+        });
+      },
+      items: _genres.map<DropdownMenuItem<String>>((Genre value) {
+        return DropdownMenuItem<String>(
+          value: value.name,
+          child: Text(value.name),
+        );
+      }).toList(),
+    );
   }
 
   _inputDescription() {
