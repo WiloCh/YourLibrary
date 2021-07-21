@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yourlibrary/src/models/book_model.dart';
 import 'package:yourlibrary/src/services/Genres_service.dart';
+import 'package:yourlibrary/src/services/book_service.dart';
 import 'package:yourlibrary/src/models/genre_model.dart';
 import 'package:yourlibrary/src/utils/standard_widgets.dart';
 
@@ -19,9 +20,14 @@ class _AddbookWidgetState extends State<AddbookWidget> {
 
   List<Genre> _genres = [];
 
+  //Clave para vincular el Formulario (Form)
+  final formKey = GlobalKey<FormState>();
+
+  BookService _serviceBook = new BookService();
   late Book _book;
   late File _image;
   bool _imageSelected = false;
+  bool _onSaving = false;
   final _picker = ImagePicker();
 
   @override
@@ -79,6 +85,188 @@ class _AddbookWidgetState extends State<AddbookWidget> {
     );
   }
 
+  _form() {
+    final size = MediaQuery.of(context).size;
+    return SingleChildScrollView(
+        child: Container(
+      padding: EdgeInsets.symmetric(horizontal: 14.0),
+      width: size.width * .85,
+      decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(color: Theme.of(context).dividerColor)),
+      child: Form(
+        key: formKey,
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 14.0, horizontal: 7.0),
+          child: Column(
+            children: [
+              _inputTitle(),
+              _inputAuthor(),
+              _inputEditorial(),
+              _inputGenre(),
+              _inputDescription(),
+              _inputPagNum(),
+              _inputPagRead(),
+              _buttons()
+            ],
+          ),
+        ),
+      ),
+    ));
+  }
+
+  _inputTitle() {
+    return TextFormField(
+        initialValue: _book.title,
+        onSaved: (value) {
+          _book.title = value;
+        },
+        validator: (value) {
+          if (value!.length < 3) {
+            return "Debe ingresar un nombre con al menos 3 caracteres";
+          } else {
+            return null;
+          }
+        },
+        decoration: InputDecoration(labelText: "Titulo"),
+        maxLength: 35);
+  }
+
+  _inputAuthor() {
+    return TextFormField(
+        initialValue: _book.author,
+        onSaved: (value) {
+          _book.author = value;
+        },
+        validator: (value) {
+          if (value!.length < 3) {
+            return "Debe ingresar un nombre con al menos 3 caracteres";
+          } else {
+            return null;
+          }
+        },
+        decoration: InputDecoration(labelText: "Autor"),
+        maxLength: 35);
+  }
+
+  _inputEditorial() {
+    return TextFormField(
+        initialValue: _book.editorial,
+        onSaved: (value) {
+          _book.editorial = value;
+        },
+        validator: (value) {
+          if (value!.length < 3) {
+            return "Debe ingresar un nombre con al menos 3 caracteres";
+          } else {
+            return null;
+          }
+        },
+        decoration: InputDecoration(labelText: "Editorial"),
+        maxLength: 35);
+  }
+
+  _inputGenre() {
+    return DropdownButton<String>(
+      value: _book.genre,
+      icon: const Icon(Icons.expand_more),
+      iconSize: 24,
+      elevation: 16,
+      isExpanded: true,
+      underline: Container(
+        height: 2,
+        color: Theme.of(context).dividerColor,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          _book.genre = newValue!;
+        });
+      },
+      items: _genres.map<DropdownMenuItem<String>>((Genre value) {
+        return DropdownMenuItem<String>(
+          value: value.name,
+          child: Text(value.name),
+        );
+      }).toList(),
+    );
+  }
+
+  _inputDescription() {
+    return TextFormField(
+        initialValue: _book.description,
+        onSaved: (value) {
+          _book.description = value;
+        },
+        validator: (value) {
+          if (value!.length < 10) {
+            return "Debe ingresar un nombre con al menos 10 caracteres";
+          } else {
+            return null;
+          }
+        },
+        decoration: InputDecoration(labelText: "Descripcion"),
+        maxLength: 255,
+        maxLines: 4);
+  }
+
+  _inputPagNum() {
+    return TextFormField(
+        initialValue: _book.pagNum,
+        onSaved: (value) {
+          _book.pagNum = value;
+        },
+        decoration: InputDecoration(labelText: "Número de páginas"),
+        maxLength: 5);
+  }
+
+  _inputPagRead() {
+    return TextFormField(
+        initialValue: _book.pagRead,
+        onSaved: (value) {
+          _book.pagRead = value;
+        },
+        decoration: InputDecoration(labelText: "Número de páginas leidas"),
+        maxLength: 5);
+  }
+
+  _buttons() {
+    return _onSaving
+        ? Container(
+            height: 50.0,
+            width: 50.0,
+            child: Center(child: CircularProgressIndicator()))
+        : Tooltip(
+            message: "Guardar",
+            child: ElevatedButton(
+              onPressed: () {
+                _sendForm();
+                _onSaving = true;
+                setState(() {});
+              },
+              child: Icon(Icons.save),
+              style: Standard.buttonStandardStyle(context),
+            ),
+          );
+  }
+
+  _sendForm() async {
+    if (!formKey.currentState!.validate()) return;
+
+    //Vincula el valor de las controles del formulario a los atributos del modelo
+    formKey.currentState!.save();
+
+    if (_imageSelected) {
+      _book.photo = await _serviceBook.uploadImage(_image);
+    }
+
+    //Llamamos al servicio para guardar el reporte
+    _serviceBook.sendBook(_book).then((value) {
+      formKey.currentState!.reset();
+      Navigator.pop(context);
+    });
+  }
+
   _showImage() {
     return Container(
       width: 100.0,
@@ -111,111 +299,6 @@ class _AddbookWidgetState extends State<AddbookWidget> {
       _imageSelected = false;
     }
     setState(() {});
-  }
-
-  _form() {
-    final size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-        child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 14.0),
-      width: size.width * .85,
-      decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(10.0),
-          border: Border.all(color: Theme.of(context).dividerColor)),
-      child: Form(
-        child: Container(
-          margin: EdgeInsets.symmetric(vertical: 14.0, horizontal: 7.0),
-          child: Column(
-            children: [
-              _inputTitle(),
-              _inputAuthor(),
-              _inputGenre(),
-              _inputEditorial(),
-              _inputDescription()
-            ],
-          ),
-        ),
-      ),
-    ));
-  }
-
-  _inputTitle() {
-    return TextFormField(
-        validator: (value) {
-          if (value!.length < 3) {
-            return "Debe ingresar un nombre con al menos 3 caracteres";
-          } else {
-            return null;
-          }
-        },
-        decoration: InputDecoration(labelText: "Titulo"),
-        maxLength: 35);
-  }
-
-  _inputAuthor() {
-    return TextFormField(
-        validator: (value) {
-          if (value!.length < 3) {
-            return "Debe ingresar un nombre con al menos 3 caracteres";
-          } else {
-            return null;
-          }
-        },
-        decoration: InputDecoration(labelText: "Autor"),
-        maxLength: 35);
-  }
-
-  _inputEditorial() {
-    return TextFormField(
-        validator: (value) {
-          if (value!.length < 3) {
-            return "Debe ingresar un nombre con al menos 3 caracteres";
-          } else {
-            return null;
-          }
-        },
-        decoration: InputDecoration(labelText: "Editorial"),
-        maxLength: 35);
-  }
-
-  _inputGenre() {
-    return DropdownButton<String>(
-      value: _book.description,
-      icon: const Icon(Icons.expand_more),
-      iconSize: 24,
-      elevation: 16,
-      isExpanded: true,
-      underline: Container(
-        height: 2,
-        color: Theme.of(context).dividerColor,
-      ),
-      onChanged: (String? newValue) {
-        setState(() {
-          _book.description = newValue!;
-        });
-      },
-      items: _genres.map<DropdownMenuItem<String>>((Genre value) {
-        return DropdownMenuItem<String>(
-          value: value.name,
-          child: Text(value.name),
-        );
-      }).toList(),
-    );
-  }
-
-  _inputDescription() {
-    return TextFormField(
-        validator: (value) {
-          if (value!.length < 10) {
-            return "Debe ingresar un nombre con al menos 10 caracteres";
-          } else {
-            return null;
-          }
-        },
-        decoration: InputDecoration(labelText: "Descripcion"),
-        maxLength: 255,
-        maxLines: 4);
   }
 
   _loadGenres() {

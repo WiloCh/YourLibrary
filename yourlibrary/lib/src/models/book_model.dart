@@ -17,6 +17,7 @@ class Book {
     this.pagRead,
     this.description,
     this.photo,
+    this.genre,
   });
 
   String? title;
@@ -26,6 +27,7 @@ class Book {
   String? pagRead;
   String? description;
   String? photo;
+  String? genre;
 
   factory Book.fromJson(Map<String, dynamic> json) => Book(
         title: json["title"],
@@ -35,6 +37,7 @@ class Book {
         pagRead: json["pagRead"],
         description: json["description"],
         photo: json["photo"],
+        genre: json["genre"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -45,5 +48,6 @@ class Book {
         "pagRead": pagRead,
         "description": description,
         "photo": photo,
+        "genre": genre,
       };
 }

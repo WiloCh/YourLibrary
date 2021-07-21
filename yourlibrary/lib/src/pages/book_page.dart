@@ -70,7 +70,7 @@ class _BookPageState extends State<BookPage>
               children: [
                 Container(
                     child: widget.book.photo == null
-                        ? Image.asset("assets/images/bu.png")
+                        ? Image.asset("assets/images/LibroIcon.jpg")
                         : Image.network(widget.book.photo.toString(),
                             width: 200)),
                 Text(" "),
@@ -85,13 +85,6 @@ class _BookPageState extends State<BookPage>
                 ),
                 Text(
                   "Descripción: " + widget.book.description.toString(),
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-                Text(
-                  "Páginas Leidas: " +
-                      widget.book.pagRead.toString() +
-                      "/" +
-                      widget.book.pagNum.toString(),
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ],

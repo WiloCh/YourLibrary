@@ -34,7 +34,7 @@ class BooksCard extends StatelessWidget {
             ],
           ),
           leading: currentBook.photo == null
-              ? Image.asset("assets/images/bu.png")
+              ? Image.asset('assets/images/LibroIcon.jpg')
               : Image.network(currentBook.photo.toString()),
         )));
   }
