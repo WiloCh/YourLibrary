@@ -24,7 +24,7 @@ class _AddbookWidgetState extends State<AddbookWidget> {
   final formKey = GlobalKey<FormState>();
 
   BookService _serviceBook = new BookService();
-  late Book _book;
+  Book _book = new Book();
   late File _image;
   bool _imageSelected = false;
   bool _onSaving = false;
@@ -34,7 +34,6 @@ class _AddbookWidgetState extends State<AddbookWidget> {
   void initState() {
     super.initState();
     _loadGenres();
-    _book = new Book();
   }
 
   @override
@@ -216,6 +215,16 @@ class _AddbookWidgetState extends State<AddbookWidget> {
         onSaved: (value) {
           _book.pagNum = value;
         },
+        validator: (value) {
+          int val = int.parse(value.toString());
+          if (value!.length < 2) {
+            return "El número de páginas debe ser de al menos 2 digitos.";
+          } else if (val < 48) {
+            return "El número debe ser mayor a 48 para considerarse un libro";
+          } else {
+            return null;
+          }
+        },
         decoration: InputDecoration(labelText: "Número de páginas"),
         maxLength: 5);
   }
@@ -225,6 +234,16 @@ class _AddbookWidgetState extends State<AddbookWidget> {
         initialValue: _book.pagRead,
         onSaved: (value) {
           _book.pagRead = value;
+        },
+        validator: (value) {
+          int val = int.parse(value.toString());
+          if (value!.length < 1) {
+            return "El campo no puede estar vacio";
+          } else if (val < 0) {
+            return "No se puede ingresar valores negativos";
+          } else {
+            return null;
+          }
         },
         decoration: InputDecoration(labelText: "Número de páginas leidas"),
         maxLength: 5);
@@ -241,8 +260,6 @@ class _AddbookWidgetState extends State<AddbookWidget> {
             child: ElevatedButton(
               onPressed: () {
                 _sendForm();
-                _onSaving = true;
-                setState(() {});
               },
               child: Icon(Icons.save),
               style: Standard.buttonStandardStyle(context),
@@ -260,9 +277,13 @@ class _AddbookWidgetState extends State<AddbookWidget> {
       _book.photo = await _serviceBook.uploadImage(_image);
     }
 
+    _onSaving = true;
+    setState(() {});
+
     //Llamamos al servicio para guardar el reporte
     _serviceBook.sendBook(_book).then((value) {
       formKey.currentState!.reset();
+      _onSaving = false;
       Navigator.pop(context);
     });
   }
