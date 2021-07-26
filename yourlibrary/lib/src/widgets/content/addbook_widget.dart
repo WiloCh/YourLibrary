@@ -226,7 +226,7 @@ class _AddbookWidgetState extends State<AddbookWidget> {
           }
         },
         decoration: InputDecoration(labelText: "Número de páginas"),
-        maxLength: 5);
+        maxLength: 4);
   }
 
   _inputPagRead() {
@@ -246,7 +246,7 @@ class _AddbookWidgetState extends State<AddbookWidget> {
           }
         },
         decoration: InputDecoration(labelText: "Número de páginas leidas"),
-        maxLength: 5);
+        maxLength: 4);
   }
 
   _buttons() {
