@@ -12,7 +12,7 @@ class ItemMenu {
 
 List<ItemMenu> menuOptions = [
   ItemMenu(Icons.home, "Inicio"),
-  ItemMenu.create(Icons.library_books, "Buscar"),
+  ItemMenu.create(Icons.search, "Buscar"),
   ItemMenu.create(Icons.location_on, "Librerias"),
 ];
 

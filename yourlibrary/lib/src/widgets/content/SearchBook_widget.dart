@@ -28,11 +28,16 @@ class _SearchBooksWidgetState extends State<SearchBooksWidget> {
               width: double.infinity,
               child: TextButton(
                 onPressed: () {},
-                //color: Colors.amber,
+                style: TextButton.styleFrom(
+                  backgroundColor: Color(0XFFFF8F00),
+                  onSurface: Colors.amber.shade50,
+                  shadowColor: Colors.red,
+                  elevation: 5,
+                ),
                 child: Text(
                   'Buscar',
                   style: TextStyle(
-                    //color: Color.,
+                    color: Colors.white,
                     fontSize: 18,
                   ),
                 ),
