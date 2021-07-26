@@ -43,7 +43,8 @@ class BookService {
   }
 
   Future<String> uploadImage(File image) async {
-    final cloudinary = CloudinaryPublic('dsj9mvatm', 'plm2cmac', cache: false);
+    final cloudinary =
+        CloudinaryPublic('dsj9mvatm', 'ml_default', cache: false);
     try {
       CloudinaryResponse response = await cloudinary.uploadFile(
         CloudinaryFile.fromFile(image.path,
