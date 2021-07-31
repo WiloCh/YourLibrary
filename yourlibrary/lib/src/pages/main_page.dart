@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yourlibrary/src/utils/views.dart';
+import 'package:yourlibrary/src/widgets/content/ShowDrawer_widget.dart';
 import 'package:yourlibrary/src/widgets/content/addbook_widget.dart';
 
 class MainPage extends StatefulWidget {
@@ -31,6 +32,7 @@ class _MainPageState extends State<MainPage> {
       body: Container(
           margin: EdgeInsets.symmetric(horizontal: 10.0),
           child: contentWidget[_selectedIndex]),
+      drawer: Drawer(child: ShopDrawer()),
       floatingActionButton: _selectedIndex == 0
           ? FloatingActionButton(
               onPressed: () {
