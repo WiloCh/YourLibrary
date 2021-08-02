@@ -74,14 +74,14 @@ class _NotesFormState extends State<NotesForm> {
           _element.matter = value.toString();
         },
         validator: (value) {
-          if (value!.length < 5) {
-            return "El Asunto debe tener al menos 5 caracteres";
+          if (value!.length < 1) {
+            return "El Asunto debe tener al menos 1 caracteres";
           } else {
             return null; //Validación se cumple al retorna null
           }
         },
-        decoration: InputDecoration(labelText: "Asusnto:"),
-        maxLength: 150,
+        decoration: InputDecoration(labelText: "Nota:"),
+        maxLength: 100,
         maxLines: 1);
   }
 
@@ -93,13 +93,13 @@ class _NotesFormState extends State<NotesForm> {
           _element.note = value.toString();
         },
         validator: (value) {
-          if (value!.length < 5) {
-            return "Debe ingresar una Nota con al menos 5 caracteres";
+          if (value!.length < 4) {
+            return "Debe ingresar una Nota con al menos 4 caracteres";
           } else {
             return null; //Validación se cumple al retorna null
           }
         },
-        decoration: InputDecoration(labelText: "Nota"),
+        decoration: InputDecoration(labelText: "contenido"),
         maxLength: 255,
         maxLines: 4);
   }

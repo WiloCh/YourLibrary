@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yourlibrary/src/pages/main_page.dart';
 
 class Standard {
   static Widget getBackground(BuildContext context) {
@@ -47,6 +48,7 @@ class Standard {
     );
   }
 
+  //Barra superio con el Icono de Close
   static AppBar appBar2(BuildContext context, String title) {
     return AppBar(
       title: Text(title),
@@ -59,6 +61,20 @@ class Standard {
               });
         },
       ),
+    );
+  }
+
+  //Barra superio con el Icono de Close y Flecha de regresar
+  static AppBar appBar3(BuildContext context, String title) {
+    return AppBar(
+      title: Text(title),
+      actions: [
+        IconButton(
+          onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => MainPage(titulo: "Your Library"))),
+          icon: Icon(Icons.close),
+        )
+      ],
     );
   }
 

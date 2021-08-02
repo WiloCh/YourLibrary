@@ -14,7 +14,7 @@ class _NotesPageState extends State<NotesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Standard.appBar(context, "Notas/Apuntes"),
+      appBar: Standard.appBar3(context, "Notas"),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 10.0),
         child: NotesList(),

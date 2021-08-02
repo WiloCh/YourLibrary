@@ -15,13 +15,8 @@ class NotesProvider extends ChangeNotifier {
     return element;
   }
 
-  Future<Notes> updateElement(int id, String matter, String note) async {
-    Notes element = Notes(id: id, matter: matter, note: note);
-    final Id = await DBProvider.db.updateData(element);
-    element.id = Id;
-    this.elements.where((element) => element.id == id);
-    notifyListeners();
-    return element;
+  Future deletElement(int id) async {
+    return await DBProvider.db.deleteData(id);
   }
 
   loadElements() async {

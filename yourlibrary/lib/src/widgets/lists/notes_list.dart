@@ -12,9 +12,36 @@ class NotesList extends StatefulWidget {
 class _NotesListState extends State<NotesList> {
   @override
   Widget build(BuildContext context) {
-    final noteProvider = Provider.of<NotesProvider>(context, listen: true);
+    final noteProvider = Provider.of<NotesProvider>(context, listen: false);
     noteProvider.loadElements();
 
+    //Eliminar la nota
+    _deleteFormDialog(BuildContext context, noteId, noteMatter) {
+      return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (param) {
+          return AlertDialog(
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('Cancelar'),
+              ),
+              TextButton(
+                onPressed: () {
+                  noteProvider.deletElement(noteId);
+                  Navigator.pop(context);
+                },
+                child: Text('Eliminar'),
+              ),
+            ],
+            title: Text('¿Quieres eliminar La Nota? : $noteMatter'),
+          );
+        },
+      );
+    }
+
+    //Listar las Notas
     return noteProvider.elements.length == 0
         ? Center(
             child: Container(
@@ -40,8 +67,14 @@ class _NotesListState extends State<NotesList> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      TextButton(onPressed: () => {}, child: Icon(Icons.edit)),
-                      TextButton(onPressed: () => {}, child: Icon(Icons.delete))
+                      TextButton(
+                          onPressed: () => {
+                                _deleteFormDialog(
+                                    context,
+                                    noteProvider.elements[index].id,
+                                    noteProvider.elements[index].matter)
+                              },
+                          child: Icon(Icons.delete))
                     ],
                   ),
                 ],

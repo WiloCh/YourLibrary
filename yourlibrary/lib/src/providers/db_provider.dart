@@ -46,9 +46,9 @@ class DBProvider {
         : [];
   }
 
-  Future<int> updateData(Notes newElement) async {
+  //Eliminar
+  Future<int> deleteData(int id) async {
     final db = await database;
-    return db.update('Notes', newElement.toJson(),
-        where: 'id = ?', whereArgs: [newElement.id]);
+    return await db.delete('Notes', where: 'id = ?', whereArgs: [id]);
   }
 }
