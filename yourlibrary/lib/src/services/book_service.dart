@@ -27,6 +27,25 @@ class BookService {
     }
   }
 
+  Future<List<Book>?> getBooksByTitle(String bookname) async {
+    List<Book> items = [];
+    try {
+      var uri = Uri.https("us-central1-backend-yourlibrary.cloudfunctions.net",
+          "/app/books/$bookname");
+      final resp = await http.get(uri);
+      if (resp.body.isEmpty) return items;
+      List<dynamic> jsonList = json.decode(resp.body);
+      for (var item in jsonList) {
+        final book = Book.fromJson(item);
+        items.add(book);
+      }
+      return items;
+    } on Exception catch (e) {
+      print("Exceotion $e");
+      return items;
+    }
+  }
+
   Future<dynamic> sendBook(Book book) async {
     try {
       final Map<String, String> _headers = {"content-type": "application/json"};
