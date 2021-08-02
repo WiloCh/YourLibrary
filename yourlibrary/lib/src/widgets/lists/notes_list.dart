@@ -12,7 +12,7 @@ class NotesList extends StatefulWidget {
 class _NotesListState extends State<NotesList> {
   @override
   Widget build(BuildContext context) {
-    final noteProvider = Provider.of<NotesProvider>(context, listen: false);
+    final noteProvider = Provider.of<NotesProvider>(context, listen: true);
     noteProvider.loadElements();
 
     //Eliminar la nota
