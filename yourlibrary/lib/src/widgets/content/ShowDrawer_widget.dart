@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yourlibrary/src/pages/notes_page.dart';
 
 class ShopDrawer extends StatefulWidget {
   ShopDrawer({Key? key}) : super(key: key);
@@ -35,14 +36,16 @@ class _ShopDrawerState extends State<ShopDrawer> {
             onTap: () {},
           ),
           ListTile(
-            leading: Icon(Icons.search),
-            title: Text('Buscar'),
-            onTap: () {},
-          ),
-          ListTile(
             leading: Icon(Icons.assignment),
             title: Text('Apuntes'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NotesPage(),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.build),

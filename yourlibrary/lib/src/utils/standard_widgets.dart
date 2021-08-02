@@ -26,9 +26,6 @@ class Standard {
           height: size.height * 0.4,
           width: double.infinity,
           decoration: BoxDecoration(
-              //image: DecorationImage(
-              //  image: ExactAssetImage("assets/images/background.png"),
-              // repeat: ImageRepeat.repeat),
               gradient: LinearGradient(colors: [
             Theme.of(context).primaryColor,
             Theme.of(context).primaryColorDark,
@@ -45,7 +42,24 @@ class Standard {
   }
 
   static AppBar appBar(BuildContext context, String title) {
-    return AppBar(title: Text(title));
+    return AppBar(
+      title: Text(title),
+    );
+  }
+
+  static AppBar appBar2(BuildContext context, String title) {
+    return AppBar(
+      title: Text(title),
+      leading: Builder(
+        builder: (BuildContext context) {
+          return IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () {
+                Navigator.pop(context);
+              });
+        },
+      ),
+    );
   }
 
   static Widget tittleToForm(BuildContext context, String title) {
