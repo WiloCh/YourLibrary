@@ -138,8 +138,8 @@ class _NotesFormState extends State<NotesForm> {
 
     formKey.currentState!.save();
 
-    final NoteProvider = Provider.of<NotesProvider>(context, listen: false);
-    NoteProvider.addElement(_element.matter, _element.note).then((value) {
+    final noteProvider = Provider.of<NotesProvider>(context, listen: false);
+    noteProvider.addElement(_element.matter, _element.note).then((value) {
       _element = value;
       formKey.currentState!.reset();
       _onSaving = false;
