@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yourlibrary/src/pages/main_page.dart';
 
 class Standard {
   static Widget getBackground(BuildContext context) {
@@ -26,9 +27,6 @@ class Standard {
           height: size.height * 0.4,
           width: double.infinity,
           decoration: BoxDecoration(
-              //image: DecorationImage(
-              //  image: ExactAssetImage("assets/images/background.png"),
-              // repeat: ImageRepeat.repeat),
               gradient: LinearGradient(colors: [
             Theme.of(context).primaryColor,
             Theme.of(context).primaryColorDark,
@@ -45,7 +43,39 @@ class Standard {
   }
 
   static AppBar appBar(BuildContext context, String title) {
-    return AppBar(title: Text(title));
+    return AppBar(
+      title: Text(title),
+    );
+  }
+
+  //Barra superio con el Icono de Close
+  static AppBar appBar2(BuildContext context, String title) {
+    return AppBar(
+      title: Text(title),
+      leading: Builder(
+        builder: (BuildContext context) {
+          return IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () {
+                Navigator.pop(context);
+              });
+        },
+      ),
+    );
+  }
+
+  //Barra superio con el Icono de Close y Flecha de regresar
+  static AppBar appBar3(BuildContext context, String title) {
+    return AppBar(
+      title: Text(title),
+      actions: [
+        IconButton(
+          onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => MainPage(titulo: "Your Library"))),
+          icon: Icon(Icons.close),
+        )
+      ],
+    );
   }
 
   static Widget tittleToForm(BuildContext context, String title) {
