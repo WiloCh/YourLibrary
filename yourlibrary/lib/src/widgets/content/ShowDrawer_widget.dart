@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yourlibrary/src/pages/notes_page.dart';
+import 'package:yourlibrary/src/pages/settings_page.dart';
 
 class ShopDrawer extends StatefulWidget {
   ShopDrawer({Key? key}) : super(key: key);
@@ -50,7 +51,14 @@ class _ShopDrawerState extends State<ShopDrawer> {
           ListTile(
             leading: Icon(Icons.build),
             title: Text('Tema'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsPage(),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.info_outline),
