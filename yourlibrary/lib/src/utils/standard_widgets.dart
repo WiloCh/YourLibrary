@@ -90,7 +90,8 @@ class Standard {
   static ButtonStyle buttonStandardStyle(BuildContext context) {
     return ElevatedButton.styleFrom(
         elevation: 5.0,
-        shadowColor: Theme.of(context).dividerColor,
+        primary: Theme.of(context).accentColor,
+        shadowColor: Theme.of(context).accentColor,
         shape: CircleBorder(),
         padding: EdgeInsets.all(20));
   }
