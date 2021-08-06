@@ -28,6 +28,7 @@ class BooksCard extends StatelessWidget {
                       child: Text((currentBook.author).toString()))),
               Text(''),
               BarProgress(
+                  color: Theme.of(context).accentColor,
                   percentage:
                       ((double.parse(currentBook.pagRead.toString())) * 100.0) /
                           (double.parse(currentBook.pagNum.toString())))

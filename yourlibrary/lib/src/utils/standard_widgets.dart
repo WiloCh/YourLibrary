@@ -10,7 +10,7 @@ class Standard {
       height: 100.0,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100.0),
-          color: Theme.of(context).disabledColor.withAlpha(30)),
+          color: Theme.of(context).disabledColor.withAlpha(25)),
     );
 
     final circle_2 = Container(
@@ -18,7 +18,7 @@ class Standard {
       height: 100.0,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100.0),
-          color: Theme.of(context).backgroundColor.withAlpha(25)),
+          color: Theme.of(context).backgroundColor.withAlpha(30)),
     );
 
     return Stack(
@@ -79,7 +79,7 @@ class Standard {
   }
 
   static Widget tittleToForm(BuildContext context, String title) {
-    Color _color = Theme.of(context).cardColor;
+    Color _color = Colors.white;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 14.0),
       child: Text(title,
