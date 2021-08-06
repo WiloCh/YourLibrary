@@ -18,7 +18,7 @@ class _ShopDrawerState extends State<ShopDrawer> {
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.amber,
+              color: Theme.of(context).accentColor,
             ),
             child: Column(
               children: [
