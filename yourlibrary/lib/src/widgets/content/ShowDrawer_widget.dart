@@ -23,7 +23,7 @@ class _ShopDrawerState extends State<ShopDrawer> {
             child: Column(
               children: [
                 Expanded(
-                  child: Image.asset('assets/images/LibroIcon.jpg'),
+                  child: Image.asset('assets/images/Logo.png'),
                 ),
                 SizedBox(
                   height: 10.0,

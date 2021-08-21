@@ -44,7 +44,7 @@ class _AddbookWidgetState extends State<AddbookWidget> {
         child: Stack(
           alignment: AlignmentDirectional.topCenter,
           children: [
-            Standard.getBackground(context),
+            BackgroundWidget(),
             Container(
               margin: EdgeInsets.symmetric(vertical: 25.0),
               child: Column(children: [
@@ -297,7 +297,7 @@ class _AddbookWidgetState extends State<AddbookWidget> {
           color: Theme.of(context).canvasColor),
       child: ClipOval(
           child: _imageSelected == false
-              ? Image.asset("assets/images/LibroIcon.jpg")
+              ? Image.asset("assets/images/LibroIcon.png")
               : Image.file(_image)),
     );
   }

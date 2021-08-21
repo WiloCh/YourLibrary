@@ -70,7 +70,7 @@ class _BookPageState extends State<BookPage>
               children: [
                 Container(
                     child: widget.book.photo == null
-                        ? Image.asset("assets/images/LibroIcon.jpg")
+                        ? Image.asset("assets/images/LibroIcon.png")
                         : Image.network(widget.book.photo.toString(),
                             width: 200)),
                 Text(" "),

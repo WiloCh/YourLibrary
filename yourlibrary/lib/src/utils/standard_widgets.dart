@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yourlibrary/src/pages/main_page.dart';
 
-class Standard {
-  static Widget getBackground(BuildContext context) {
+class BackgroundWidget extends StatelessWidget {
+  const BackgroundWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     final circle = Container(
@@ -10,7 +13,7 @@ class Standard {
       height: 100.0,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100.0),
-          color: Theme.of(context).disabledColor.withAlpha(25)),
+          color: Theme.of(context).disabledColor.withAlpha(30)),
     );
 
     final circle_2 = Container(
@@ -18,7 +21,7 @@ class Standard {
       height: 100.0,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100.0),
-          color: Theme.of(context).backgroundColor.withAlpha(30)),
+          color: Theme.of(context).backgroundColor.withAlpha(25)),
     );
 
     return Stack(
@@ -41,7 +44,9 @@ class Standard {
       ],
     );
   }
+}
 
+class Standard {
   static AppBar appBar(BuildContext context, String title) {
     return AppBar(
       title: Text(title),

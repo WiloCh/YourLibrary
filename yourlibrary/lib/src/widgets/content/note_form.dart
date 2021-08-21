@@ -34,7 +34,7 @@ class _NotesFormState extends State<NotesForm> {
         child: Stack(
           alignment: AlignmentDirectional.topCenter,
           children: [
-            Standard.getBackground(context),
+            BackgroundWidget(),
             Container(
               margin: EdgeInsets.symmetric(vertical: 35.0),
               padding: EdgeInsets.symmetric(horizontal: 20.0),
