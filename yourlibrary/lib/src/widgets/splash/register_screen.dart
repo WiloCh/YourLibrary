@@ -68,7 +68,7 @@ class EmailTextControl extends StatelessWidget {
           margin: EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
-            color: Colors.grey.shade300,
+            border: Border.all(color: Colors.grey),
           ),
           padding: EdgeInsets.only(left: 10),
           child: TextField(
@@ -96,7 +96,7 @@ class PasswordTextControl extends StatelessWidget {
           margin: EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
-            color: Colors.grey.shade300,
+            border: Border.all(color: Colors.grey),
           ),
           padding: EdgeInsets.only(left: 10),
           child: TextField(
@@ -123,7 +123,7 @@ class RepitPasswordTextControl extends StatelessWidget {
           margin: EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
-            color: Colors.grey.shade300,
+            border: Border.all(color: Colors.grey),
           ),
           padding: EdgeInsets.only(left: 10),
           child: TextField(

@@ -45,6 +45,8 @@ dependencies:
   path_provider: ^2.0.2
   sqflite: ^2.0.0+3
   shared_preferences: ^2.0.6
+  #Geolocalizacion
+  google_maps_flutter: ^2.0.8
 
 dev_dependencies:
   flutter_test:

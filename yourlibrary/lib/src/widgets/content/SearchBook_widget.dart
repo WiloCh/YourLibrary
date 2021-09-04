@@ -1,70 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:yourlibrary/src/widgets/lists/books_list.dart';
 
-class SearchBooksWidget extends StatefulWidget {
-  SearchBooksWidget({Key? key}) : super(key: key);
-
-  @override
-  _SearchBooksWidgetState createState() => _SearchBooksWidgetState();
-}
-
-class _SearchBooksWidgetState extends State<SearchBooksWidget> {
-  final _formkey = GlobalKey<FormState>();
-
-  var _autoValidate = AutovalidateMode.disabled;
+class SearchBooksWidget extends StatelessWidget {
+  const SearchBooksWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      child: Form(
-        key: _formkey,
-        autovalidateMode: _autoValidate,
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                hintText: 'Ingrese la Búsqueda',
-                border: OutlineInputBorder(),
-                filled: true,
-                errorStyle: TextStyle(fontSize: 15),
-              ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Ingresa el termino de búsqueda';
-                }
-                return null;
-              },
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: TextButton(
-                onPressed: () {
-                  final isValid = _formkey.currentState!.validate();
-                  if (isValid) {
-                  } else {
-                    setState(() {
-                      _autoValidate = AutovalidateMode.always;
-                    });
-                  }
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Color(0XFFFF8F00),
-                  onSurface: Colors.amber.shade50,
-                  shadowColor: Colors.red,
-                  elevation: 5,
-                ),
-                child: Text(
-                  'Buscar',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
+    final size = MediaQuery.of(context).size;
+
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: size.height / 20,
+          ),
+          Container(
+            height: size.height / 14,
+            width: size.width,
+            alignment: Alignment.center,
+            child: Container(
+              height: size.height / 14,
+              width: size.width / 1.2,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Buscar",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+                onChanged: null,
               ),
             ),
-          ],
-        ),
+          ),
+          SizedBox(
+            height: size.height / 30,
+          ),
+          BooksList(),
+        ],
       ),
     );
   }

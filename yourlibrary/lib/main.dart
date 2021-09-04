@@ -27,10 +27,12 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'YourLibrary',
             theme: ThemeData(
-                brightness: provider.darkMode == true
-                    ? Brightness.dark
-                    : Brightness.light,
-                primarySwatch: Colors.amber),
+              brightness: provider.darkMode == true
+                  ? Brightness.dark
+                  : Brightness.light,
+              primarySwatch: Colors.orange,
+              accentColor: Colors.orangeAccent,
+            ),
             home: WelcomeScreen(),
             //home: MainPage(titulo: 'YourLibrary'),
           );

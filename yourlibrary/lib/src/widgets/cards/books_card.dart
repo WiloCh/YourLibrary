@@ -10,15 +10,15 @@ class BooksCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BookPage(book: currentBook),
-              ));
-        },
-        child: Card(
-            child: ListTile(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BookPage(book: currentBook),
+            ));
+      },
+      child: Card(
+        child: ListTile(
           title: Text((currentBook.title).toString()),
           subtitle: Column(
             children: [
@@ -28,7 +28,6 @@ class BooksCard extends StatelessWidget {
                       child: Text((currentBook.author).toString()))),
               Text(''),
               BarProgress(
-                  textStyle: TextStyle(color: Colors.green),
                   color: Theme.of(context).accentColor,
                   percentage:
                       ((double.parse(currentBook.pagRead.toString())) * 100.0) /
@@ -38,6 +37,8 @@ class BooksCard extends StatelessWidget {
           leading: currentBook.photo == null
               ? Image.asset('assets/images/LibroIcon.png')
               : Image.network(currentBook.photo.toString()),
-        )));
+        ),
+      ),
+    );
   }
 }

@@ -34,9 +34,6 @@ class _BookPageState extends State<BookPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.book.title.toString(),
-        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
@@ -68,21 +65,25 @@ class _BookPageState extends State<BookPage>
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox(height: 15.0),
                 Container(
                     child: widget.book.photo == null
                         ? Image.asset("assets/images/LibroIcon.png")
-                        : Image.network(widget.book.photo.toString(),
-                            width: 200)),
-                Text(" "),
-                Text(" "),
+                        : Image.network(
+                            widget.book.photo.toString(),
+                            width: 150,
+                          )),
+                SizedBox(height: 30.0),
                 Text(
                   "Autor: " + widget.book.author.toString(),
                   style: Theme.of(context).textTheme.headline5,
                 ),
+                SizedBox(height: 15.0),
                 Text(
                   "Editorial: " + widget.book.editorial.toString(),
                   style: Theme.of(context).textTheme.headline5,
                 ),
+                SizedBox(height: 15.0),
                 Text(
                   "Descripción: " + widget.book.description.toString(),
                   style: Theme.of(context).textTheme.headline5,
@@ -93,10 +94,12 @@ class _BookPageState extends State<BookPage>
           Container(
               child: Column(
             children: [
+              SizedBox(height: 25.0),
               Text(
                 "Descripción: " + widget.book.description.toString(),
                 style: Theme.of(context).textTheme.headline5,
               ),
+              SizedBox(height: 15.0),
               Text(
                 "Páginas Leidas: " +
                     widget.book.pagRead.toString() +
