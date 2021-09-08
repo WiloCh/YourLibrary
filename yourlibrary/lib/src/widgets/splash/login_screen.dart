@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:yourlibrary/src/pages/main_page.dart';
+import 'package:provider/provider.dart';
+
+import 'package:yourlibrary/src/providers/app_provider.dart';
+import 'package:yourlibrary/src/providers/login_provider.dart';
+import 'package:yourlibrary/src/services/user_service.dart';
 import 'package:yourlibrary/src/utils/login_widgets.dart';
 import 'package:yourlibrary/src/widgets/splash/register_screen.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key});
 
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +61,9 @@ class EmailTextControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = LoginProvider.of(context);
     return StreamBuilder(
+      stream: bloc.emailStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Container(
           margin: EdgeInsets.only(top: 10),
@@ -78,6 +79,7 @@ class EmailTextControl extends StatelessWidget {
                 hintText: 'usuario@correo.com',
                 labelText: 'Ingresa tu Correo electrónico',
                 errorText: snapshot.error?.toString()),
+            onChanged: bloc.changeEmail,
           ),
         );
       },
@@ -90,7 +92,10 @@ class PasswordTextControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = LoginProvider.of(context);
+    bool _obscure = true;
     return StreamBuilder(
+      stream: bloc.passwordStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Container(
           margin: EdgeInsets.only(top: 10),
@@ -100,11 +105,20 @@ class PasswordTextControl extends StatelessWidget {
           ),
           padding: EdgeInsets.only(left: 10),
           child: TextField(
+            onChanged: bloc.changePassword,
+            obscureText: _obscure,
             decoration: InputDecoration(
                 icon: Icon(Icons.vpn_key, color: Colors.orange),
                 border: InputBorder.none,
                 labelText: 'Contraseña',
-                errorText: snapshot.error?.toString()),
+                errorText: snapshot.error?.toString(),
+                suffixIcon: IconButton(
+                    icon: Icon(
+                        _obscure ? Icons.visibility : Icons.visibility_off),
+                    onPressed: () {
+                      bloc.changePassword;
+                      _obscure = !_obscure;
+                    })),
           ),
         );
       },
@@ -117,20 +131,28 @@ class SubmitButtonControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<AppProvider>(context, listen: false);
+    UserService userService = new UserService();
+    final bloc = LoginProvider.of(context);
     return StreamBuilder(
+      stream: bloc.formValidStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return ElevatedButton(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 7.0),
-            child: Text('Ingresar'),
-          ),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => MainPage(titulo: "YourLibrary")));
-          },
-        );
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 7.0),
+              child: Text('Ingresar'),
+            ),
+            onPressed: snapshot.hasData
+                ? () async {
+                    Map info =
+                        await userService.login(bloc.email, bloc.password);
+                    if (info['ok']) {
+                      appProvider.token = info['token'];
+                    } else {
+                      print(info['message']);
+                    }
+                  }
+                : null);
       },
     );
   }
