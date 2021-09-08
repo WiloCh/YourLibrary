@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:yourlibrary/src/Map_bloc.dart';
 
 class LibrariesWidget extends StatefulWidget {
   LibrariesWidget({Key? key}) : super(key: key);
@@ -8,24 +10,23 @@ class LibrariesWidget extends StatefulWidget {
 }
 
 class _LibrariesWidgetState extends State<LibrariesWidget> {
+  final _controller = MapController();
+
+  final _initialCameraPosition = CameraPosition(
+    target: LatLng(-0.9563641, -78.6980523),
+    zoom: 15,
+  );
+
   @override
   Widget build(BuildContext context) {
     double _heigth = MediaQuery.of(context).size.height;
     print("Altura: $_heigth");
 
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(" "),
-          Text("Mapa de Librerías y Bibliotecas",
-              style: Theme.of(context).textTheme.headline5),
-          Text(" "),
-          SizedBox(
-            height: _heigth * 0.6,
-            child: Container(color: Colors.blueAccent),
-          ),
-        ],
+    return Scaffold(
+      body: GoogleMap(
+        onMapCreated: _controller.onMapCreated,
+        initialCameraPosition: _initialCameraPosition,
+        myLocationButtonEnabled: true,
       ),
     );
   }
