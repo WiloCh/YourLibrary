@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:yourlibrary/src/Map_bloc.dart';
+import 'package:yourlibrary/src/bloc/Map_bloc.dart';
 
 class LibrariesWidget extends StatefulWidget {
   LibrariesWidget({Key? key}) : super(key: key);
