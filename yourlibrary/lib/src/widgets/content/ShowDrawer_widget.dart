@@ -32,11 +32,6 @@ class _ShopDrawerState extends State<ShopDrawer> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('Perfil'),
-            onTap: () {},
-          ),
-          ListTile(
             leading: Icon(Icons.assignment),
             title: Text('Apuntes'),
             onTap: () {
@@ -50,7 +45,7 @@ class _ShopDrawerState extends State<ShopDrawer> {
           ),
           ListTile(
             leading: Icon(Icons.build),
-            title: Text('Tema'),
+            title: Text('Configuraciones'),
             onTap: () {
               Navigator.push(
                 context,
