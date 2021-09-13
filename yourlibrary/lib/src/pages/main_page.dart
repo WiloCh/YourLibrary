@@ -46,17 +46,18 @@ class _MainPageState extends State<MainPage> {
             )
           : null,
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: (value) {
-            setState(() {
-              _selectedIndex = value;
-              print("Cambio del Estado");
-            });
-          },
-          items: menuOptions
-              .map((e) =>
-                  BottomNavigationBarItem(icon: Icon(e.icon), label: e.label))
-              .toList()),
+        currentIndex: _selectedIndex,
+        onTap: (value) {
+          setState(() {
+            _selectedIndex = value;
+            print("Cambio del Estado");
+          });
+        },
+        items: menuOptions
+            .map((e) =>
+                BottomNavigationBarItem(icon: Icon(e.icon), label: e.label))
+            .toList(),
+      ),
     );
   }
 }
