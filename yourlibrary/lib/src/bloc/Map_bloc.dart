@@ -16,7 +16,7 @@ class MapController extends ChangeNotifier {
           _initialPosition!.latitude,
           _initialPosition!.longitude,
         ),
-        zoom: 14.5,
+        zoom: 15.5,
       );
 
   bool _loading = true;
