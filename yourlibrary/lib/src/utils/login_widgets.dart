@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class BtnStyle extends StatelessWidget {
-  final Color Color1;
-  final Color Color2;
+  final Color color1;
+  final Color color2;
   final text;
-  final Widget Pressed;
-  final Color Colortext;
+  final Widget pressed;
+  final Color colortext;
 
   BtnStyle(
-      {required this.Color1,
-      required this.Color2,
+      {required this.color1,
+      required this.color2,
       required this.text,
-      required this.Pressed,
-      required this.Colortext});
+      required this.pressed,
+      required this.colortext});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class BtnStyle extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Pressed,
+              builder: (context) => pressed,
             ),
           );
         },
@@ -35,7 +35,7 @@ class BtnStyle extends StatelessWidget {
         child: Ink(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color1, Color2],
+                colors: [color1, color2],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
@@ -46,7 +46,7 @@ class BtnStyle extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colortext),
+              style: TextStyle(color: colortext),
             ),
           ),
         ),
