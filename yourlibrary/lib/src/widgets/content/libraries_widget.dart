@@ -44,7 +44,7 @@ class LibrariesWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "to use our app we need the access to your location,\n so you must enable the GPS",
+                      "Para usar nuestra aplicación necesitamos el acceso a su ubicación,\n por lo que debe habilitar el GPS",
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 15.0),
@@ -53,7 +53,7 @@ class LibrariesWidget extends StatelessWidget {
                         final controller = context.read<MapController>();
                         controller.turnOnGPS();
                       },
-                      child: Text("Turn on GPS"),
+                      child: Text("Enciender el GPS"),
                     ),
                   ],
                 ),
