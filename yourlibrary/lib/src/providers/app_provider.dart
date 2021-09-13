@@ -4,6 +4,7 @@ class AppProvider extends ChangeNotifier {
   bool _darkMode = false;
   int _selectedPage = 0;
   String _token = "";
+  String _iduser = "";
 
   bool get darkMode {
     return this._darkMode;
@@ -32,8 +33,18 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  String get iduser {
+    return this._iduser;
+  }
+
+  set iduser(String value) {
+    this._iduser = value;
+    notifyListeners();
+  }
+
   init(String token, bool mode) {
     this._darkMode = mode;
     this._token = token;
+    this._iduser = iduser;
   }
 }

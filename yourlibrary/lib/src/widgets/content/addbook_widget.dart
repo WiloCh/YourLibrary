@@ -7,6 +7,7 @@ import 'package:yourlibrary/src/services/Genres_service.dart';
 import 'package:yourlibrary/src/services/book_service.dart';
 import 'package:yourlibrary/src/models/genre_model.dart';
 import 'package:yourlibrary/src/utils/standard_widgets.dart';
+import 'package:yourlibrary/src/utils/user_shared_preferences.dart';
 
 class AddbookWidget extends StatefulWidget {
   AddbookWidget({Key? key}) : super(key: key);
@@ -85,6 +86,8 @@ class _AddbookWidgetState extends State<AddbookWidget> {
   }
 
   _form() {
+    final prefs = new Preferences();
+    _book.iduser = prefs.iduser;
     final size = MediaQuery.of(context).size;
     return SingleChildScrollView(
         child: Container(

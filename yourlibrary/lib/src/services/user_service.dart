@@ -27,7 +27,12 @@ class UserService {
     if (decodedResp.containsKey('idToken')) {
       final prefs = new Preferences();
       prefs.token = decodedResp['idToken'];
-      return {'ok': true, 'token': decodedResp['idToken']};
+      prefs.iduser = decodedResp['localId'];
+      return {
+        'ok': true,
+        'token': decodedResp['idToken'],
+        'iduser': decodedResp['localId']
+      };
     } else {
       return {'ok': false, 'message': decodedResp['error']['message']};
     }

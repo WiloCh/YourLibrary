@@ -18,6 +18,7 @@ class Book {
     this.description,
     this.photo,
     this.genre,
+    this.iduser,
   });
 
   String? title;
@@ -28,6 +29,7 @@ class Book {
   String? description;
   String? photo;
   String? genre;
+  String? iduser;
 
   factory Book.fromJson(Map<String, dynamic> json) => Book(
         title: json["title"],
@@ -38,6 +40,7 @@ class Book {
         description: json["description"],
         photo: json["photo"],
         genre: json["genre"],
+        iduser: json["iduser"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -49,5 +52,6 @@ class Book {
         "description": description,
         "photo": photo,
         "genre": genre,
+        "iduser": iduser,
       };
 }

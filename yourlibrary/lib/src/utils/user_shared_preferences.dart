@@ -30,4 +30,12 @@ class Preferences {
   set token(String value) {
     _prefs.setString('token', value);
   }
+
+  String get iduser {
+    return _prefs.getString('iduser') ?? "";
+  }
+
+  set iduser(String value) {
+    _prefs.setString('iduser', value);
+  }
 }

@@ -148,6 +148,7 @@ class SubmitButtonControl extends StatelessWidget {
                         await userService.login(bloc.email, bloc.password);
                     if (info['ok']) {
                       appProvider.token = info['token'];
+                      appProvider.iduser = info['iduser'];
                     } else {
                       print(info['message']);
                     }
